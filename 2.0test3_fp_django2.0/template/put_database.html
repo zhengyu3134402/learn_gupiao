@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>插入数据</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../static/js/vuex.js"></script>
+
+    <style>
+        li{
+            list-style-type: none;
+        }
+        .header{
+            background-color: rgb(230, 95, 95);
+            font-size: 30px;
+            text-align: center;
+            line-height: 200px;
+            height: 200px;
+        }
+        .mid{
+            /*background-color: aquamarine;*/
+            border: 1px solid black;
+            height: 390px;
+        }
+        .mid_left{
+            /*background-color: rgb(226, 193, 85);*/
+            float:left;
+            width: 40%;
+            background-color: bisque;
+
+
+
+        }
+        .mid_right{
+            /*background-color: rgb(150, 240, 117);*/
+            float: right;
+            width: 59.8%;
+            text-align: center;
+            border-left:1px solid black;
+            background-color: pink;
+            height: 400px;
+        }
+        .mid_left_in{
+            text-align: center;
+            line-height: 100px;
+
+        }
+        .mid_left_in a{
+            text-decoration:none;
+
+            border: 5px solid darkred;
+            display: block;
+            margin-top: 10px;
+        }
+        .foot{
+            background-color: #595959;
+            color: white;
+            /*height: 150px;*/
+            text-align: center;
+
+        }
+        .foot p{
+            line-height: 15px;
+        }
+        .mid_right_list li{
+            /*float: left;*/
+            text-align: left;
+        }
+        .mid_right_list a{
+            font-size: 30px;
+            text-decoration: none;
+
+        }
+        .mid_left_button_file{
+            font-size: 18px;
+        }
+        .mid_left_button_submit{
+            font-size: 20px;
+            color:blue;
+
+        }
+        .put_in_database{
+            font-size: 25px;
+            color: red;
+        }
+        .mid_left_clear_database input{
+            font-size: 20px;
+        }
+        .mid_left_show{
+            border: 3px solid red;
+            width: 250px;
+            height: 10px;
+
+        }
+        .mid_left_show_side{
+
+
+            height: 10px;
+            background-color: #13ce66;
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+
+
+
+<script>
+// 底部组件 =======================================
+
+Vue.use(Vuex);
+const store = new Vuex.Store({
+    state:{
+        widthArg:0
+    },
+    mutations:{
+        progress_pro1:function(state){
+
+            var timename=setInterval(function () {
+                    axios.get('http://127.0.0.1:8000/put_database?ARGS=progress_pro')
+                    .then(function (response) {
+                        var {data} = response;
+                        var stop_num = {data}.data.file_nums;
+
+                        if({data}.data.ok === stop_num){
+
+                            clearInterval(timename);
+                            return state.widthArg = 250
+                        }
+
+                        var show_num = ({data}.data.ok/stop_num)*250;
+
+                        return state.widthArg = show_num
+                    })
+                },3000);
+
+        },
+    }
+
+});
+
+let Foot = {
+    template:`
+        <div class="foot">
+            <ul>
+                <li>版本号@2.0.0</li>
+                <li>制作人：驴头太子</li>
+                <li>联系方式：zhengyu61316（微信号）</li>
+            </ul>
+        </div>
+  `
+};
+// 底部组件 =======================================
+
+// 中间组件 =======================================
+
+
+// 中间左组件 --------------------------------------
+
+let Mid_left = {
+    template:`
+        <div class="mid_left_in">
+            <div style="border: 1px solid blue" class="mid_left_clear_database">
+
+                    <input type="button" v-on:click="delete_database" value="1.清空数据库">
+
+            </div>
+            <div style="border: 1px solid blue">
+                <form action="/put_database/" method="post" enctype="multipart/form-data">
+                    <span>2.</span><input type="file" multiple class="mid_left_button_file" name="files" ></br>
+
+                    <input type="submit" class="mid_left_button_submit"  value="3.上传文件到export文件夹"></br>
+                    <input type="button" value="4.插入上传文件到数据库" class="put_in_database" v-on:click="put_in_database">
+                    <input type="reset">
+                    <input type="button" value="显示进度" v-on:click="progress_pro">
+                </form>
+            </div>
+
+                <div v-if="show"  class="mid_left_show">
+                        <div class="mid_left_show_side" v-bind:style="{width:widthArg+'px'}">
+
+                </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    `,
+    data:function(){
+        return {show:false}
+    },
+    computed:{
+        widthArg:function () {
+            return this.$store.state.widthArg
+
+        }
+    },
+    methods:{
+        delete_database:function () {
+            axios.get('http://127.0.0.1:8000/put_database?ARGS=delete_database')
+              .then(function (response) {
+                    alert('数据库清空完毕！！！')
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+        },
+
+        progress_pro:function(){
+            this.show = true;
+            return this.$store.commit('progress_pro1')
+        },
+
+        put_in_database:function () {
+            axios.get('http://127.0.0.1:8000/put_database?ARGS=put_in_database')
+              .then(function (response) {
+
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+        },
+
+    }
+};
+// 中间左组件 --------------------------------------
+
+// 中间右组件 --------------------------------------
+let Mid_right = {
+    template:`
+        <div>
+            <h2>插入数据页面说明</h2>
+            <ul class="mid_right_list">
+                <li>1 若想 <strong>保留</strong> 数据库中的数据，请忽略清空数据库按钮</li>
+                <li>2 若想 <strong>清除</strong> 数据库中的数据，请点击 <strong>1.清空数据库按钮</strong>,<strong>注意要弹出数据已清除的提示框，才表示成功</strong></li>
+                <li>3 点击<strong>2.选择文件</strong>按钮找到上传的文件夹。打开文件，利用<strong>shift按键</strong>选择多个文件，点击打开</li>
+
+                <li>5 点击<strong>3.上传文件到export文件夹</strong>按钮向文件存储库上传文件</li>
+                <li>6 点击<strong>4.插入上传文件到数据库</strong>按钮，将文件存储库的文件插入到数据库中</li>
+                <li>7 点击<strong>显示进度</strong>按钮，会显示文件插入到数据库中的进度,插入完成后，export文件夹（文件存储库）自动清空</li>
+                <li>8 如果想重新选择提交的文件，请按<strong>重置</strong>按钮</li>
+                <li>9 点击返回系统主页，即 返回系统主页</li>
+                <li><h3>总结： 1->2->3->4</h3></li>
+                <div style="border:3px solid red"><a href="/system/">点击此处返回系统主页</a></div>
+
+                <li></li>
+            </ul>
+        </div>
+    `
+};
+// 中间右组件 --------------------------------------
+
+let Mid = {
+    template:`
+        <div class="mid">
+            <my-mid_left class="mid_left"></my-mid_left>
+            <my-mid_right class="mid_right"></my-mid_right>
+        </div>
+    `,
+    components:{
+        "my-mid_left": Mid_left,
+        "my-mid_right": Mid_right
+    }
+};
+
+// 中间组件 =======================================
+
+// 头组件 =======================================
+    let Header = {
+        template: `
+            <div class="header">
+                欢迎来到插入数据页面
+            </div>
+        `
+    };
+// 头组件 =======================================
+
+// 根组件 =======================================
+    var app = new Vue({
+        el: "#app",
+        store:store,
+        template: `
+            <div>
+                <headers></headers>
+                <mid></mid>
+                <foot></foot>
+            </div>
+        `,
+        components: {
+            "headers": Header,
+            "mid": Mid,
+            "foot": Foot
+        }
+    });
+
+// 根组件 =======================================
+</script>
+</body>
+
+</html>

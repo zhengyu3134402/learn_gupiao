@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="../static/js/vuex.js"></script>
+</head>
+<body>
+
+    <div id="app">
+
+    </div>
+
+
+
+
+
+<script>
+Vue.use(Vuex);
+const store = new Vuex.Store({
+    state:{
+        show:true
+    },
+    mutations:{
+        show_vuex_info:function (state) {
+            if(state.show === false){
+                console.log(state.show);
+                return state.show = true
+            }
+            else{
+                console.log(state.show);
+                return state.show = false
+            }
+        }
+
+    }
+});
+
+let All = {
+    template:`
+        <div>
+
+
+           <button  v-on:click="show_info">111</button>
+
+                  <div v-if="show">
+                    <td>111111</td>
+
+                  </div>
+
+    `,
+    computed:{
+      show:function () {
+          return this.$store.state.show
+      }
+    },
+    methods:{
+        show_info:function () {
+            return this.$store.commit('show_vuex_info')
+        }
+    }
+
+};
+
+
+
+// 根组件 =======================================
+    var app = new Vue({
+        el: "#app",
+        store:store,
+        template: `
+            <div>
+                   <all></all>
+            </div>
+
+        `,
+        components: {
+            all:All
+        }
+    });
+
+// 根组件 =======================================
+</script>
+
+
+</body>
+</html>

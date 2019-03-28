@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex"></script>
+</head>
+
+<body>
+
+<div id="app">
+
+</div>
+
+
+
+<script>
+
+
+let All = {
+    template: `
+        <div>
+            <table border="1">
+        <tr>
+            <th>代号</th>
+            <th>日期</th>
+            <th>名字</th>
+            <th>次日收盘/昨日收盘</th>
+            <th>次日收盘/当日收盘</th>
+            <th>次日最高/当日收盘</th>
+            <th>次日最低/当日收盘</th>
+            <th>次日收盘/当日收盘</th>
+
+            <th>第二日收盘/当日收盘</th>
+            <th>第二日最高/当日收盘</th>
+            <th>第二日最低/当日收盘</th>
+            <th>第二日收盘/当日收盘</th>
+
+            <th>第三日收盘/当日收盘</th>
+            <th>第三日最高/当日收盘</th>
+            <th>第三日最低/当日收盘</th>
+            <th>第三日收盘/当日收盘</th>
+
+            <th>第四日收盘/当日收盘</th>
+            <th>第四日最高/当日收盘</th>
+            <th>第四日最低/当日收盘</th>
+            <th>第四日收盘/当日收盘</th>
+
+            <th>第五日收盘/当日收盘</th>
+            <th>第五日最高/当日收盘</th>
+            <th>第五日最低/当日收盘</th>
+            <th>第五日收盘/当日收盘</th>
+
+        </tr>
+
+            {% for i in show_result_list %}
+
+                <tr>
+                    <td>{{ i.0 }}</td>
+                    <td>{{ i.1 }}</td>
+                    <td>{{ i.2 }}</td>
+                    <td>{{ i.23 }}
+
+                    <td>{{ i.3 }}</td>
+                    <td>{{ i.4 }}</td>
+                    <td>{{ i.5 }}</td>
+
+                    {% if i.6 >= 1 %}
+                    <td style="background-color:red;">{{ i.6 }}</td>
+                    {% else %}
+                    <td style="background-color:green;">{{ i.6 }}</td>
+                    {% endif %}
+
+                    <td>{{ i.7 }}</td>
+                    <td>{{ i.8 }}</td>
+                    <td>{{ i.9 }}</td>
+
+                    {% if i.10 >= 1 %}
+                    <td style="background-color:red;">{{ i.10 }}</td>
+                    {% else %}
+                    <td style="background-color:green;">{{ i.10 }}</td>
+                    {% endif %}
+
+
+                    <td>{{ i.11 }}</td>
+                    <td>{{ i.12 }}</td>
+                    <td>{{ i.13 }}</td>
+
+                    {% if i.14 >= 1 %}
+                    <td style="background-color:red;">{{ i.14 }}</td>
+                    {% else %}
+                    <td style="background-color:green;">{{ i.14 }}</td>
+                    {% endif %}
+
+
+                    <td>{{ i.15 }}</td>
+                    <td>{{ i.16 }}</td>
+                    <td>{{ i.17 }}</td>
+
+                    {% if i.18 >= 1 %}
+                    <td style="background-color:red;">{{ i.18 }}</td>
+                    {% else %}
+                    <td style="background-color:green;">{{ i.18 }}</td>
+                    {% endif %}
+
+
+
+                    <td>{{ i.19 }}</td>
+                    <td>{{ i.20 }}</td>
+                    <td>{{ i.21 }}</td>
+
+
+                    {% if i.22 >= 1 %}
+                    <td style="background-color:red;">{{ i.22 }}</td>
+                    {% else %}
+                    <td style="background-color:green;">{{ i.22 }}</td>
+                    {% endif %}
+
+
+
+
+                </tr>
+
+            {% endfor %}
+
+    </table>
+
+        </div>
+
+    `,
+};
+// 根组件 =======================================
+    var app = new Vue({
+        el: "#app",
+
+        template: `
+            <div>
+                   <all></all>
+            </div>
+
+        `,
+        components: {
+            all:All
+        }
+    });
+
+// 根组件 =======================================
+</script>
+
+
+
+
+
+</body>
+</html>

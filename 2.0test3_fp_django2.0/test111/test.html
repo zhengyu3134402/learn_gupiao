@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vuex.js"></script>
+    <style>
+        .aa{
+            height:10px;
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+
+    </div>
+
+<script>
+
+    Vue.use(Vuex);
+    const store = new Vuex.Store({
+        state:{
+                ww: 100
+        },
+
+    });
+
+    new Vue({
+        el:'#app',
+        store:store,
+        template:`
+            <div>
+                <input type="textarea" v-model="ss">{{ ss }}
+
+            </div>
+        `,
+        data:{
+            ss:''
+        },
+        computed:{
+            qq:function () {
+                return this.$store.state.ww
+            }
+        }
+
+    })
+
+
+</script>
+</body>
+</html>

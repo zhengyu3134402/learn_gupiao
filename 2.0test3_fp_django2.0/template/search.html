@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>搜索页面</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="../static/js/vuex.js"></script>
+    <style>
+        li{
+            list-style-type: none;
+        }
+        .header{
+            background-color: rgb(230, 95, 95);
+            font-size: 30px;
+            text-align: center;
+            line-height: 200px;
+            height: 200px;
+        }
+        .mid{
+            background-color: aquamarine;
+            border: 1px solid black;
+            height: 1215px;
+        }
+        .mid_left{
+            /*background-color: rgb(226, 193, 85);*/
+            float:left;
+            width: 40%;
+            background-color: bisque;
+
+
+        }
+        .mid_right{
+            /*background-color: rgb(150, 240, 117);*/
+            float: right;
+            width: 59.8%;
+            text-align: center;
+            border-left:1px solid black;
+            background-color: pink;
+        }
+        .mid_left_in{
+            text-align: center;
+            line-height: 100px;
+        }
+        .mid_left_in a{
+            text-decoration:none;
+        }
+        .mid h1{
+            text-align: center;
+        }
+        .mid_date{
+            border-top:1px solid black;
+            border-bottom:1px solid black;
+        }
+        .mid_condition button{
+            font-size: 20px;
+        }
+        .mid_condition_input{
+            width: 50px;
+
+        }
+        .show1{
+            border: 3px solid black;
+            margin-top: 10px;
+        }
+        .show2{
+            border: 3px solid black;
+            margin-top: 30px;
+        }
+        .show3{
+            border: 3px solid black;
+            margin-top: 30px;
+        }
+        .foot{
+            margin-top: 0px;
+            background-color: #595959;
+            color: white;
+            /*height: 150px;*/
+            text-align: center;
+        }
+        .strong{
+            color: orangered;
+        }
+        .one_all{
+            margin-top: 30px;
+            border: 1px solid black;
+        }
+        .all{
+            margin-top: 30px;
+
+        }
+        .all textarea{
+            font-size: 20px;
+        }
+        .show3 input{
+            width: 50px;
+        }
+        .mid_show4_text{
+            width: 50px;
+        }
+        .mid_show5_text{
+            width: 50px;
+        }
+        .mid_show4{
+            margin-top: 30px;
+            border: 3px solid black;
+        }
+        .mid_show5{
+            margin-top: 30px;
+            border: 3px solid black;
+        }
+        .foot p{
+            line-height: 15px;
+        }
+        .do_sd textarea{
+
+        }
+        .do_ddd textarea{
+           user-select:none;
+        }
+        .select_days span{
+            color: orangered;
+        }
+        .select_args span{
+            color: #ff4fde;
+        }
+        .select_computed strong{
+            color: #491ccd;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+
+
+
+<script>
+Vue.use(Vuex);
+const store = new Vuex.Store({
+    state:{
+        add_show1:'',
+        add_show2:'',
+        add_show3:'',
+        add_show4:'',
+        add_show5:'',
+        all_one:'',
+        all:'',
+        show_ddd:false,
+        show_sd:true,
+    },
+    mutations:{
+        change_add_kp:function (state, payload) {
+            return state.add_show1 = payload.name+'['+payload.value+']'
+        },
+        change_show2_jia:function (state, payload) {
+            return state.add_show2 = payload
+        },
+        change_show3_bls:function (state, payload) {
+            return state.add_show3 = payload.name + '['+payload.value + ']'
+        },
+        change_show4_dy:function(state,payload){
+            return state.add_show4 = payload
+        },
+
+        change_show5:function(state, payload){
+
+            return state.add_show5 = state.add_show4+payload
+        },
+
+        change_all_one:function(state, payload){
+            return state.all += payload+'\r\n'
+
+        },
+        change_all:function (state, payload) {
+            console.log(payload);
+            return state.all = payload
+        },
+        change_show_ddd:function (state) {
+            if (state.show_ddd === false && state.show_sd === false) {
+                return state.show_ddd = true
+            }else{
+                return state.show_ddd = false
+            }
+
+        },
+        change_show_sd:function (state) {
+            if (state.show_ddd === false && state.show_sd === false) {
+                return state.show_sd = true
+            }else{
+                return state.show_sd = false
+            }
+
+        },
+
+    }
+});
+
+// 底部组件 =======================================
+let Foot = {
+    template:`
+        <div class="foot">
+            <ul>
+                <li>版本号@2.0.0</li>
+                <li>制作人：驴头太子</li>
+                <li>联系方式：zhengyu61316（微信号）</li>
+            </ul>
+        </div>
+  `
+};
+// 底部组件 =======================================
+
+
+// 中间条件组件 =======================================
+
+
+let Mid_show1 = {
+    template:`
+        <div class="show1">
+            <div> <span>开盘（kp）</span> <input name='kp' type="text" class="mid_condition_input" ref="kp"> <button v-on:click="add_kp">添加</button> </div>
+            <div> <span>开盘（zg）</span> <input name='zg' type="text" class="mid_condition_input" ref="zg"> <button v-on:click="add_zg">添加</button> </div>
+            <div> <span>开盘（zd）</span> <input name='zd' type="text" class="mid_condition_input" ref="zd"> <button v-on:click="add_zd">添加</button> </div>
+            <div> <span>开盘（sp）</span> <input name='sp' type="text" class="mid_condition_input" ref="sp"> <button v-on:click="add_sp">添加</button> </div> <br>
+            <div> <span>您的添加项为： <strong class="strong" >{{ add_show1 }}</strong> </span> </div>
+        </div>
+        `,
+
+    computed:{
+
+        add_show1:function () {
+            return this.$store.state.add_show1;
+        }
+
+    },
+    methods:{
+
+        add_kp:function () {
+            return this.$store.commit('change_add_kp', {value:this.$refs.kp.value, name:this.$refs.kp.name})
+        },
+        add_zg:function () {
+            return this.$store.commit('change_add_kp', {value:this.$refs.zg.value, name:this.$refs.zg.name})
+        },
+        add_zd:function () {
+            return this.$store.commit('change_add_kp', {value:this.$refs.zd.value, name:this.$refs.zd.name})
+        },
+        add_sp:function () {
+            return this.$store.commit('change_add_kp', {value:this.$refs.sp.value, name:this.$refs.sp.name})
+        },
+    }
+};
+
+let Mid_show2 = {
+    template:`
+        <div class="show2">
+            <input type="button" v-on:click="show2_jia" name="jia" ref="jia" value="+">
+            <input type="button" v-on:click="show2_jian" name="jian" ref="jian" value="-">
+            <input type="button" v-on:click="show2_cheng" name="cheng" ref="cheng" value="*">
+            <input type="button" v-on:click="show2_chu" name="chu" ref="chu" value="/">
+            <button>添加</button> <br> <br>
+            <div> <span>您的添加项为： <strong class="strong">{{ add_show2 }}</strong> </span> </div>
+        </div>
+    `,
+    computed:{
+
+        add_show2:function () {
+
+            return this.$store.state.add_show2;
+        }
+
+    },
+    methods:{
+        show2_jia:function () {
+            return this.$store.commit('change_show2_jia', this.$refs.jia.value)
+        },
+        show2_jian:function () {
+            return this.$store.commit('change_show2_jia', this.$refs.jian.value)
+        },
+        show2_cheng:function () {
+            return this.$store.commit('change_show2_jia', this.$refs.cheng.value)
+        },
+        show2_chu:function () {
+            return this.$store.commit('change_show2_jia', this.$refs.chu.value)
+        },
+    }
+
+};
+
+let Mid_show3 = {
+    template:`
+         <div class="show3">
+            <div> <span>布林上线（bls）</span> <input type="text" name="bls" ref="bls">  <button v-on:click="show3_bls">添加</button> </div>
+            <div> <span>布林中线（blz）</span> <input type="text" name="blz" ref="blz">  <button v-on:click="show3_blz">添加</button> </div>
+            <div> <span>布林下线（blx）</span> <input type="text" name="blx" ref="blx">  <button v-on:click="show3_blx">添加</button> </div> <br>
+            <div> <span>您的添加项为： <strong class="strong">{{ add_show3 }}</strong> </span> </div>
+        </div>
+    `,
+    computed: {
+        add_show3:function () {
+            return this.$store.state.add_show3
+        }
+    },
+    methods:{
+        show3_bls:function () {
+            return this.$store.commit('change_show3_bls',{value:this.$refs.bls.value, name:this.$refs.bls.name})
+        },
+        show3_blz:function () {
+            return this.$store.commit('change_show3_bls',{value:this.$refs.blz.value, name:this.$refs.blz.name})
+        },
+        show3_blx:function () {
+            return this.$store.commit('change_show3_bls',{value:this.$refs.blx.value, name:this.$refs.blx.name})
+        },
+    }
+};
+
+
+let Mid_show4 = {
+    template:`
+        <div class="mid_show4">
+            <input type="button" v-on:click="show4_dy" name="dy" ref="dy" value=">">
+            <input type="button" v-on:click="show4_xy" name="xy" ref="xy" value="<">
+            <input type="button" v-on:click="show4_dyh" name="dyh" ref="dyh" value="==">
+            <input type="button" v-on:click="show4_dydy" name="dydy" ref="dydy" value=">=">
+            <input type="button" v-on:click="show4_xydy" name="xydy" ref="xydy" value="<="> <br> <br>
+
+            <div> <span>您的添加项为： <strong class="strong">{{ add_show4 }}</strong> </span> </div>
+        </div>
+    `,
+    computed:{
+        add_show4:function () {
+            return this.$store.state.add_show4
+        }
+    },
+    methods:{
+        show4_dy:function () {
+            return this.$store.commit('change_show4_dy', this.$refs.dy.value)
+        },
+        show4_xy:function () {
+            return this.$store.commit('change_show4_dy', this.$refs.xy.value)
+        },
+        show4_dyh:function () {
+            return this.$store.commit('change_show4_dy', this.$refs.dyh.value)
+        },
+        show4_dydy:function () {
+            return this.$store.commit('change_show4_dy', this.$refs.dydy.value)
+        },
+        show4_xydy:function () {
+            return this.$store.commit('change_show4_dy', this.$refs.xydy.value)
+        },
+
+    }
+};
+
+let Mid_show5 = {
+   template:`
+        <div class="mid_show5">
+            <div> <span>{{ show4 }}</span> <input type="text" ref="show5" class="mid_show5_text"> <input type="button" value="添加" v-on:click="change1_show5"> </div> </br> </br>
+            <div> <span>您的添加项为： <strong class="strong">{{ add_show5 }}</strong> </span> </div>
+        </div>
+   `,
+    computed:{
+        show4:function () {
+            return this.$store.state.add_show4
+        },
+        add_show5:function () {
+            return this.$store.state.add_show5
+        }
+    },
+    methods:{
+        change1_show5:function () {
+            return this.$store.commit('change_show5',this.$refs.show5.value)
+        }
+    }
+};
+
+let All_one = {
+    template:`
+        <div class="one_all">
+            <span>组合的一条条件公式为：<strong>{{ all_one }}</strong></span> <br> <br>
+            <button v-on:click="add_to_all">添加到总公式栏</button>
+        </div>
+    `,
+
+    computed:{
+        all_one:function () {
+            return this.$store.state.add_show1+this.$store.state.add_show2+this.$store.state.add_show3+this.$store.state.add_show5
+        }
+    },
+    methods:{
+        add_to_all:function () {
+            return this.$store.commit('change_all_one', this.all_one)
+        }
+    }
+};
+
+// 中间条件组件 =======================================
+
+
+// 中间汇总组件2 =======================================
+let Mid_alln = {
+    template:`
+         <div class="all">
+                <span>总公式栏（关系为且）：</span> <br>
+                <textarea style="width:800px;height:150px;" ref="new_all" disabled name="textarea">{{ all }}</textarea>
+
+         </div>
+    `,
+    computed:{
+        all:function () {
+            return this.$store.state.all
+        }
+    },
+
+
+
+};
+// 中间汇总组件2 =======================================
+
+// 中间汇总组件1 =======================================
+let Mid_ally = {
+    template:`
+        {% if num == 0 %}
+             <div class="all">
+
+                    <span>总公式栏（关系为且）：</span> <br>
+                    <textarea style="width:1200px;height:150px;" ref="new_all" name="textarea"></textarea>
+
+             </div>
+         {% elif num ==1 %}
+             <div class="all">
+
+                    <span>总公式栏（关系为且）：</span> <br>
+                    <textarea style="width:1200px;height:150px;" ref="new_all" name="textarea">{{ textarea_cookies }}</textarea>
+
+             </div>
+         {% endif %}
+    `,
+    computed:{
+        all:function () {
+            return this.$store.state.all
+        }
+    },
+
+
+
+};
+// 中间汇总组件1 =======================================
+
+// 中间日期组件 =======================================
+let Mid_date = {
+  template:`
+    {% if num == 0 %}
+        <div>
+            <h3>
+            <span>请选择查询数据的日期范围：</span>
+            <span>从</span><input type="date" name="start_date"><span>~</span>
+            <span>到</span><input type="date" name="end_date">
+            </h3>
+        </div>
+
+    {% elif num ==1 %}
+        <div>
+            <h3>
+            <span>请选择查询数据的日期范围：</span>
+            <span>从</span><input type="date" name="start_date" value="{{ start_date_cookies }}"><span>~</span>
+            <span>到</span><input type="date" name="end_date" value="{{ end_date_cookies }}">
+            </h3>
+        </div>
+    {% endif %}
+
+  `
+};
+// 中间日期组件 =======================================
+
+
+// 中间日期组件 =======================================
+let Explain = {
+    template:`
+        <div>
+            <ul>
+                <li class="select_days">1 选择天数：
+                    <strong> <span>[0]</span>  :今天&nbsp;&nbsp;&nbsp;&nbsp</strong>
+                    <strong> <span>[-1]</span>  :昨天&nbsp;&nbsp;&nbsp;&nbsp</strong>
+                    <strong> <span>[+1]</span>  :明天</strong>&nbsp;&nbsp;&nbsp;&nbsp以此类推</li>
+                <li class="select_args"><hr>
+                    2 可用变量：
+                    <strong> <span>kp</span>  ：开盘&nbsp;&nbsp;&nbsp;&nbsp</strong>
+                    <strong> <span>zg</span>  ：最高&nbsp;&nbsp;&nbsp;&nbsp</strong>
+                    <strong> <span>zd</span>  ：最低&nbsp;&nbsp;&nbsp;&nbsp</strong>
+                    <strong> <span>sp</span>  ：收盘</strong> <br> <br>
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp &nbsp;&nbsp;&nbsp;&nbsp &nbsp;&nbsp;&nbsp;&nbsp
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp <span>bls</span>  ：布林上线 &nbsp;&nbsp;&nbsp;&nbsp</strong>
+                    <strong> <span>blz</span>  ：布林中线 &nbsp;&nbsp;&nbsp;&nbsp</strong>
+                    <strong> <span>blx</span>  ：布林下线</strong> <br> <br>
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp &nbsp;&nbsp;&nbsp;&nbsp &nbsp;&nbsp;&nbsp;&nbsp
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp <span>bls_1_1</span>  ：布林上线1.1 &nbsp;&nbsp;&nbsp;&nbsp</strong>
+                    <strong> <span>blz_1_1</span>  ：布林中线1.1 &nbsp;&nbsp;&nbsp;&nbsp</strong>
+                    <strong> <span>blx_1_1</span>  ：布林下线1.1</strong> <br> <br>
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp &nbsp;&nbsp;&nbsp;&nbsp &nbsp;&nbsp;&nbsp;&nbsp
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp <span>today_ma20</span>  ： MA20 &nbsp;&nbsp;&nbsp;&nbsp</strong>
+                    <strong> <span>today_ma20_1_1</span>  ：MA201.1</strong> <hr>
+
+                </li>
+                <li class="select_computed"> 3 可用运算符号： <strong>+</strong>&nbsp;&nbsp
+                                        <strong>-</strong>&nbsp;&nbsp
+                                        <strong>*</strong>&nbsp;&nbsp
+                                        <strong>/</strong>&nbsp;&nbsp
+                                        <strong>></strong>&nbsp;&nbsp
+                                        <strong><</strong>&nbsp;&nbsp
+                                        <strong>==</strong>&nbsp;&nbsp
+                                        <strong>>=</strong>&nbsp;&nbsp
+                                        <strong><=</strong></li> <hr>
+                <li> 4 例子：  <strong>sp[0]/sp[-1]>1.1</strong>&nbsp;&nbsp;&nbsp;&nbsp为今日收盘除以昨日收盘大于1.1</li> <hr>
+                <li> 5 注意事项：例子为一个表达式写一行即可，如果是多个表达式，要另启一行，不需要加"and"及其他符号；带有
+                        xx_1_1的变量中的“1”,是数字“1”，而不是字母“l” </li> <hr>
+                <li></li>
+            </ul>
+        </div>
+    `
+};
+// 中间日期组件 =======================================
+
+
+// 中间组件 =======================================
+let Mid = {
+    template:`
+        <div class="mid">
+            <h1>工作区域  <a href="/system/">点击此处返回系统页面</a> </h1>
+            <h3>请选择条件添加方式（暂时只支持且的关系）:</h3>
+            <span>方式1：</span><input type="button" value="点点点" v-on:click="change_show_ddd"> <br> <br>
+            <span>方式2：</span><input type="button" value="手动输入" v-on:click="change_show_sd"> <br>
+            <explain></explain>
+            <div v-if="show_ddd" class="do_ddd">
+
+                <mid_show1></mid_show1>
+                <mid_show2></mid_show2>
+                <mid_show3></mid_show3>
+                <mid_show4></mid_show4>
+                <mid_show5></mid_show5>
+                <all_one></all_one>
+                <form action="/start_search/" method="POST">
+                    <div class="mid_date">
+                        <mid_date></mid_date>
+                        <mid_alln></mid_alln>
+                    </div>
+                    <input type="submit" style="font-size:30px;color:red;" value="开始搜索">
+                </form>
+
+            </div>
+            <div v-if="show_sd" class="do_sd">
+                <form action="/start_search/" method="post">
+                    <div class="mid_date">
+                        <mid_date></mid_date>
+                        <mid_ally></mid_ally>
+                    </div>
+                    <input type="submit" style="font-size:30px;color:red;" value="开始搜索">
+                </form>
+            </div>
+        </div>
+    `,
+    components:{
+        explain:Explain,
+        mid_date:Mid_date,
+        mid_ally:Mid_ally,
+        mid_alln:Mid_alln,
+        mid_show1:Mid_show1,
+        mid_show2:Mid_show2,
+        mid_show3:Mid_show3,
+        mid_show4:Mid_show4,
+        mid_show5:Mid_show5,
+
+        all_one:All_one,
+    },
+    computed:{
+        show_ddd:function () {
+            return this.$store.state.show_ddd
+        },
+        show_sd:function () {
+            return this.$store.state.show_sd
+        }
+    },
+    methods:{
+        change_show_ddd:function () {
+            return this.$store.commit('change_show_ddd')
+        },
+        change_show_sd:function () {
+            return this.$store.commit('change_show_sd')
+        },
+    }
+};
+// 中间组件 =======================================
+
+// 头组件 =======================================
+    let Header = {
+        template: `
+            <div class="header">
+                欢迎来到搜索页面
+            </div>
+        `
+    };
+// 头组件 =======================================
+
+// 根组件 =======================================
+    var app = new Vue({
+        el: "#app",
+        store:store,
+        template: `
+            <div>
+                <headers></headers>
+                <mid></mid>
+                <foot></foot>
+            </div>
+        `,
+        components: {
+            "headers": Header,
+            "mid": Mid,
+            "foot": Foot
+        }
+    });
+
+// 根组件 =======================================
+</script>
+</body>
+
+</html>

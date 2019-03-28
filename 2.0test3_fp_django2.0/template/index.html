@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>主页</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        li{
+            list-style-type: none;
+        }
+        .header{
+            background-color: rgb(230, 95, 95);
+            font-size: 30px;
+            text-align: center;
+            line-height: 200px;
+            height: 200px;
+        }
+        .mid{
+            background-color: aquamarine;
+            border: 1px solid black;
+            height: 430px;
+        }
+        .mid_left{
+            /*background-color: rgb(226, 193, 85);*/
+            float:left;
+            width: 39.6%;
+
+           
+
+        }
+        .mid_right{
+            /*background-color: rgb(150, 240, 117);*/
+            float: right;
+            width: 59.8%;
+            text-align: center;
+            border:1px solid black;
+            height: 430px;
+
+        }
+        .mid_right_list li{
+            /*float: left;*/
+            text-align: left;
+
+        }
+        .mid_left_in{
+            text-align: center;
+            line-height:387px;
+            border: 1px solid black;
+        }
+        .mid_left_in a{
+            text-decoration:none;
+
+        }
+        .foot{
+            background-color: #595959;
+            color: white;
+            /*height: 150px;*/
+            text-align: center;
+
+        }
+        .foot p{
+            line-height: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+
+
+
+<script>
+// 底部组件 =======================================
+let Foot = {
+    template:`
+        <div class="foot">
+            <ul>
+                <li>版本号@2.0.0</li>
+                <li>制作人：驴头太子</li>
+                <li>联系方式：zhengyu61316（微信号）</li>
+            </ul>
+        </div>
+  `
+};
+// 底部组件 =======================================
+
+// 中间组件 =======================================
+
+
+// 中间左组件 --------------------------------------
+
+let Mid_left = {
+    template:`
+        <div class="mid_left_in">
+            <div >
+                <a href="/system/">
+                    <h1>点击此处进入系统</h1>
+
+
+                </a>
+            </div>
+        </div>
+    `
+};
+// 中间左组件 --------------------------------------
+
+// 中间右组件 --------------------------------------
+let Mid_right = {
+    template:`
+        <div>
+            <h2>查询系统2.0说明</h2>
+            <ul class="mid_right_list">
+                <li>1. 加入了前端系统，操作更加人性化</li>
+                <li>2. 后端代码进行了重构，从流程式转变成了半对象式</li>
+                <li>3. 启用新技术Ajax与正则</li>
+                <li>4. 前端主要利用vue进行动态渲染</li>
+                <li>5. 对数据库存储进行了重构</li>
+            </ul>
+        </div>
+    `
+};
+// 中间右组件 --------------------------------------
+
+let Mid = {
+    template:`
+        <div class="mid">
+            <my-mid_left class="mid_left"></my-mid_left>
+            <my-mid_right class="mid_right"></my-mid_right>
+        </div>
+    `,
+    components:{
+        "my-mid_left": Mid_left,
+        "my-mid_right": Mid_right
+    }
+};
+
+// 中间组件 =======================================
+    
+// 头组件 =======================================
+    let Header = {
+        template: `
+            <div class="header">
+                欢迎来到查询系统2.0
+            </div>
+        `
+    };
+// 头组件 =======================================
+
+// 根组件 =======================================
+    var app = new Vue({
+        el: "#app",
+        template: `
+            <div>
+                <headers></headers>
+                <mid></mid>
+                <foot></foot>
+            </div>
+        `,
+        components: {
+            "headers": Header,
+            "mid": Mid,
+            "foot": Foot
+        }
+    });
+
+// 根组件 =======================================
+</script>
+</body>
+
+</html>

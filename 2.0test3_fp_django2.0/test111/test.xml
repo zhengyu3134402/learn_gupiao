@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+    <student>
+        <name>lingling</name>
+        <age>25</age>
+    </student>
+    <student>
+        <name>yingying</name>
+        <age>22</age>
+    </student>
+</root>

@@ -1,0 +1,1048 @@
+行号 日期 代码名称  次日开盘处于当天收盘 次日最高除以当天收盘, 次日最低除以当天收盘,次日收盘除以当天收盘 
+
+
+
+		kp2_sp1 = round(kp2/sp1, 5)
+		zg2_sp1 = round(zg2/sp1, 5)
+		zd2_sp1 = round(zd2/sp1, 5)
+		sp2_sp1 = round(sp2/sp1, 5)
+
+
+		{ # {{ result1.code }}--{{ result1.date }}--{{ result1.name }}--{{ kp2_sp1 }} ---{{ zg2_sp1 }}---{{ zd2_sp1 }}---{{ sp2_sp1 }} #}
+
+
+
+# =========================================
+# mysql
+
+
+# 清空表内容命令
+
+# 	truncate
+
+# 		truncate table 表名
+
+# 		特点 速度快,不写服务器log
+
+# 	delete
+
+# 		delete * from 表名
+
+# 		特点 速度慢,写服务器log
+
+# 分页查询命令
+
+# 	select * from yingyong1_gupiao limit 0, 500;  # 从第1条到第500条数据
+# =========================================
+
+
+
+
+
+
+# =========================================
+# django
+
+
+# 批量向数据库中插入数据
+	# 批量插入数据的时候，首先要创建一个对象的列表，然后调用bulk_create方法，
+	# 一次将列表中的数据插入到数据库中。
+
+	# product_list_to_insert = list()
+	# for x in range(10):
+	#     product_list_to_insert.append(Product(name='product name ' + str(x), price=x))
+	# Product.objects.bulk_create(product_list_to_insert)
+# =========================================
+
+
+
+
+
+
+
+# =========================================
+# python3
+
+
+# -----------------------------------------
+# 将字符串转换成decimal精度小数类型
+# import decimal
+# dec = decimal.Decimal('0.123456')
+# -----------------------------------------
+
+
+# -----------------------------------------
+ excel表格的写入
+
+ 2007版以前的Excel（xls结尾的），需要使用xlrd读，xlwt写
+ 2007版以后的Excel（xlsx结尾的），需要使用openpyxl来读写
+
+# ....................................
+Excel（xls结尾的）
+
+# import xlwt
+# def set_style(name, height, bold=False):
+#     style = xlwt.XFStyle()   # 初始化样式
+#     font = xlwt.Font()       # 为样式创建字体
+#     font.name = name
+#     font.bold = bold
+#     font.color_index = 4
+#     font.height = height
+
+#     style.font = font
+#     return style
+
+
+# def write_excel(path):
+#     # 创建工作簿
+#     workbook = xlwt.Workbook(encoding='utf-8')
+#     # 创建sheet
+#     data_sheet = workbook.add_sheet('demo')
+#     row0 = [u'字段名称', u'大致时段', 'CRNTI', 'CELL-ID']
+#     row1 = [u'测试', '15:50:33-15:52:14', 22706, 4190202]
+#     # 生成第一行和第二行
+#     for i in range(len(row0)):
+#         data_sheet.write(0, i, row0[i], set_style('Times New Roman', 220, True))
+#         data_sheet.write(1, i, row1[i], set_style('Times New Roman', 220, True))
+
+   # -----------------------
+    column = 1
+    for i in data:
+        sheet.cell(flag_row, column, i)
+        column += 1
+   # --------------------------------
+#     # 保存文件
+#     # workbook.save('demo.xls')
+#     workbook.save(path)
+
+
+# if __name__ == '__main__':
+#     # 设置路径
+#     path = 'E:/demo.xls'
+#     write_excel(path)
+#     print(u'创建demo.xls文件成功')
+
+
+
+# excel表格的读取
+# import xlrd
+
+# # 设置路径
+# path = 'E:/input.xlsx'
+# # 打开execl
+# workbook = xlrd.open_workbook(path)
+
+# # 输出Excel文件中所有sheet的名字
+# print(workbook.sheet_names())
+
+# # 根据sheet索引或者名称获取sheet内容
+# Data_sheet = workbook.sheets()[0]  # 通过索引获取
+# # Data_sheet = workbook.sheet_by_index(0)  # 通过索引获取
+# # Data_sheet = workbook.sheet_by_name(u'名称')  # 通过名称获取
+
+
+# print(Data_sheet.name)  # 获取sheet名称
+# rowNum = Data_sheet.nrows  # sheet行数
+# colNum = Data_sheet.ncols  # sheet列数
+
+# # 获取所有单元格的内容
+# list = []
+# for i in range(rowNum):
+#     rowlist = []
+#     for j in range(colNum):
+#         rowlist.append(Data_sheet.cell_value(i, j))
+#     list.append(rowlist)
+# # 输出所有单元格的内容
+# for i in range(rowNum):
+#     for j in range(colNum):
+#         print(list[i][j], '\t\t', end="")
+#     print()
+
+# # 获取整行和整列的值（列表）
+# rows = Data_sheet.row_values(0)  # 获取第一行内容
+# cols = Data_sheet.col_values(1)  # 获取第二列内容
+# # print (rows)
+# # print (cols)
+
+# # 获取单元格内容
+# cell_A1 = Data_sheet.cell(0, 0).value
+# cell_B1 = Data_sheet.row(0)[1].value  # 使用行索引
+# cell_C1 = Data_sheet.cell(0, 2).value
+# cell_D2 = Data_sheet.col(3)[1].value  # 使用列索引
+# print(cell_A1, cell_B1, cell_C1, cell_D2)
+
+# # 获取单元格内容的数据类型
+# # ctype:0 empty,1 string, 2 number, 3 date, 4 boolean, 5 error
+# print('cell(0,0)数据类型:', Data_sheet.cell(0, 0).ctype)
+# print('cell(1,0)数据类型:', Data_sheet.cell(1, 0).ctype)
+# print('cell(1,1)数据类型:', Data_sheet.cell(1, 1).ctype)
+# print('cell(1,2)数据类型:', Data_sheet.cell(1, 2).ctype)
+
+# # 获取单元格内容为日期的数据
+# date_value = xlrd.xldate_as_tuple(Data_sheet.cell_value(1,0),workbook.datemode)
+# print(type(date_value), date_value)
+# print('%d:%d:%d' % (date_value[0:3]))
+# ....................................
+
+
+
+# ....................................
+Excel（xlsx结尾的）
+：安装openpyxl
+
+pip install openpyxl
+1
+2：excel表读取数据(.xlsx)
+
+import openpyxl
+filepath = 'sample.xlsx'
+wb = openpyxl.load_workbook(filepath)
+#获取全部表名
+sheetnames = wb.sheetnames
+#切换到目标数据表
+#ws = wb[]
+ws = wb['sheet2']
+#表总行数
+max_row = ws.max_row
+#表总列数
+max_col = ws.max_column
+for x in range(1,max_row):
+    #获取表中x行1列的值
+    cell_data = ws.cell(row=x,column=1).value
+
+3:已存在excel表追加数据
+
+import openpyxl
+filepath = 'sample.xlsx'
+wb = openpyxl.load_workbook(filepath)
+#切换到目标数据表
+#ws = wb[]
+ws = wb['sheet2']
+#待填充数据
+data = [[1,2,3],[4,5,6]]
+for x in data:
+    ws.append(x)
+savename = 'update_excel.xlsx'
+wb.save(savename)
+
+4：创建新excel表
+
+import openpyxl
+filepath = 'new_excel.xlsx'
+wb = openpyxl.Workbook()
+#默认表sheet1
+ws1 = wb.active
+#更改表名
+ws1.title = 'new_sheet_name'
+#创建sheet2表
+ws2 = wb.create_sheet('sheet2')
+ws1.cell(row=1,column=1,value='sheet1表1行1列的值').value
+ws2.cell(row=2,column=2,value='sheet2表2行2列的值').value
+wb.save(filepath)
+
+
+
+
+文件追加的写入
+from openpyxl import load_workbook
+    # wb = load_workbook("mylogintest.xlsx")  # 生成一个已存在的wookbook对象
+    # wb1 = wb.active  # 激活sheet
+    # wb.save("mylogintest.xlsx")  # 保存
+
+   1、 安装
+pip install openpyxl
+
+想要在文件中插入图片文件，需要安装pillow，安装文件：PIL-fork-1.1.7.win-amd64-py2.7.exe
+
+
+
+· font(字体类)：字号、字体颜色、下划线等
+
+· fill(填充类)：颜色等
+
+· border(边框类)：设置单元格边框
+
+· alignment(位置类)：对齐方式
+
+· number_format(格式类)：数据格式
+
+· protection(保护类)：写保护
+
+
+
+2、 创建一个excel 文件，并写入不同类的内容
+
+
+复制代码
+# -*- coding: utf-8 -*-
+
+from openpyxl import Workbook
+wb = Workbook()    #创建文件对象
+
+# grab the active worksheet
+ws = wb.active     #获取第一个sheet
+
+# Data can be assigned directly to cells
+ws['A1'] = 42      #写入数字
+ws['B1'] = "你好"+"automation test" #写入中文（unicode中文也可）
+
+# Rows can also be appended
+ws.append([1, 2, 3])    #写入多个单元格
+
+# Python types will automatically be converted
+import datetime
+import time
+ws['A2'] = datetime.datetime.now()    #写入一个当前时间
+#写入一个自定义的时间格式
+ws['A3'] =time.strftime("%Y年%m月%d日 %H时%M分%S秒",time.localtime())
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+3、 创建sheet
+复制代码
+# -*- coding: utf-8 -*-
+
+from openpyxl import Workbook
+wb = Workbook()
+
+ws1 = wb.create_sheet("Mysheet")           #创建一个sheet
+ws1.title = "New Title"                    #设定一个sheet的名字
+ws2 = wb.create_sheet("Mysheet", 0)      #设定sheet的插入位置 默认插在后面
+ws2.title = u"你好"    #设定一个sheet的名字 必须是Unicode
+
+ws1.sheet_properties.tabColor = "1072BA"   #设定sheet的标签的背景颜色
+
+#获取某个sheet对象
+print wb.get_sheet_by_name(u"你好"  )
+print wb["New Title" ]
+
+#获取全部sheet 的名字，遍历sheet名字
+print wb.sheetnames
+for sheet_name in wb.sheetnames:
+    print sheet_name
+
+print "*"*50
+
+for sheet in wb:
+    print sheet.title
+
+#复制一个sheet
+wb["New Title" ]["A1"]="zeke"
+source = wb["New Title" ]
+target = wb.copy_worksheet(source)
+
+# w3 = wb.copy_worksheet(wb['new title'])
+# ws3.title = 'new2'
+# wb.copy_worksheet(wb['new title']).title = 'hello'
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+4、 操作单元格
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import Workbook
+wb = Workbook()
+ws1 = wb.create_sheet("Mysheet")           #创建一个sheet
+
+ws1["A1"]=123.11
+ws1["B2"]="你好"
+d = ws1.cell(row=4, column=2, value=10)
+
+print ws1["A1"].value
+print ws1["B2"].value
+print d.value
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+5、 操作批量的单元格
+无论ws.rows还是ws.iter_rows都是一个对象
+
+除上述两个对象外 单行，单列都是一个元祖，多行多列是二维元祖
+
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import Workbook
+wb = Workbook()
+
+ws1 = wb.create_sheet("Mysheet")           #创建一个sheet
+
+ws1["A1"]=1
+ws1["A2"]=2
+ws1["A3"]=3
+
+ws1["B1"]=4
+ws1["B2"]=5
+ws1["B3"]=6
+
+ws1["C1"]=7
+ws1["C2"]=8
+ws1["C3"]=9
+
+#操作单列
+print ws1["A"]
+for cell in ws1["A"]:
+    print cell.value
+
+#操作多列,获取每一个值
+print ws1["A:C"]
+for column in ws1["A:C"]:
+    for cell in column:
+        print cell.value
+
+#操作多行
+row_range = ws1[1:3]
+print row_range
+for row in row_range:
+    for cell in row:
+        print cell.value
+
+print "*"*50
+for row in ws1.iter_rows(min_row=1, min_col=1, max_col=3, max_row=3):
+    for cell in row:
+        print cell.value
+
+#获取所有行
+print ws1.rows
+for row in ws1.rows:
+    print row
+
+print "*"*50
+#获取所有列
+print ws1.columns
+for col in ws1.columns:
+    print col
+
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+使用百分数
+
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import Workbook
+from openpyxl import load_workbook
+wb = load_workbook('e:\\sample.xlsx')
+wb.guess_types = True
+ws=wb.active
+ws["D1"]="12%"
+print ws["D1"].value
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+#结果会打印小数
+复制代码
+
+
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import Workbook
+from openpyxl import load_workbook
+wb = load_workbook('e:\\sample.xlsx')
+wb.guess_types = False
+ws=wb.active
+ws["D1"]="12%"
+print ws["D1"].value
+wb.save("e:\\sample.xlsx")
+#结果会打印百分数
+复制代码
+
+
+获取所有的行对象：
+复制代码
+#coding=utf-8
+from openpyxl import Workbook
+from openpyxl import load_workbook
+wb = load_workbook('e:\\sample.xlsx')
+ws=wb.active
+rows=[]
+for row in ws.iter_rows():
+            rows.append(row)
+print rows   #所有行
+print rows[0] #获取第一行
+print rows[0][0] #获取第一行第一列的单元格对象
+print rows[0][0].value #获取第一行第一列的单元格对象的值
+
+print rows[len(rows)-1] #获取最后行 print rows[-1]
+print rows[len(rows)-1][len(rows[0])-1] #获取第后一行和最后一列的单元格对象
+print rows[len(rows)-1][len(rows[0])-1].value #获取第后一行和最后一列的单元格对象的值
+复制代码
+
+
+获取所有的列对象：
+复制代码
+#coding=utf-8
+from openpyxl import Workbook
+from openpyxl import load_workbook
+wb = load_workbook('e:\\sample.xlsx')
+ws=wb.active
+cols=[]
+cols = []
+for col in ws.iter_cols():
+    cols.append(col)
+
+print cols   #所有列
+print cols[0]   #获取第一列
+print cols[0][0]   #获取第一列的第一行的单元格对象
+print cols[0][0].value   #获取第一列的第一行的值
+
+print "*"*30
+print cols[len(cols)-1]   #获取最后一列
+print cols[len(cols)-1][len(cols[0])-1]   #获取最后一列的最后一行的单元格对象
+print cols[len(cols)-1][len(cols[0])-1].value   #获取最后一列的最后一行的单元格对象的值
+复制代码
+
+
+6、 操作已经存在的文件
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import Workbook
+from openpyxl import load_workbook
+wb = load_workbook('e:\\sample.xlsx')
+wb.guess_types = True   #猜测格式类型
+ws=wb.active
+ws["D1"]="12%"
+print ws["D1"].value
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+#注意如果原文件有一些图片或者图标，则保存的时候可能会导致图片丢失
+复制代码
+
+
+7、 单元格类型
+复制代码
+ # -*- coding: utf-8 -*-
+from openpyxl import Workbook
+from openpyxl import load_workbook
+import datetime
+wb = load_workbook('e:\\sample.xlsx')
+
+ws=wb.active
+wb.guess_types = True
+
+ws["A1"]=datetime.datetime(2010, 7, 21)
+print ws["A1"].number_format
+
+ws["A2"]="12%"
+print ws["A2"].number_format
+
+ws["A3"]= 1.1
+print ws["A4"].number_format
+
+ws["A4"]= "中国"
+print ws["A5"].number_format
+# Save the file
+wb.save("e:\\sample.xlsx")
+执行结果：
+yyyy-mm-dd h:mm:ss
+0%
+General
+General
+#如果是常规，显示general,如果是数字，显示'0.00_ '，如果是百分数显示0%
+数字需要在Excel中设置数字类型，直接写入的数字是常规类型
+复制代码
+
+
+8、 使用公式
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import Workbook
+from openpyxl import load_workbook
+
+wb = load_workbook('e:\\sample.xlsx')
+ws1=wb.active
+
+ws1["A1"]=1
+ws1["A2"]=2
+ws1["A3"]=3
+
+ws1["A4"] = "=SUM(1, 1)"
+ws1["A5"] = "=SUM(A1:A3)"
+
+print ws1["A4"].value  #打印的是公式内容，不是公式计算后的值,程序无法取到计算后的值
+print ws1["A5"].value  #打印的是公式内容，不是公式计算后的值,程序无法取到计算后的值
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+9、 合并单元格
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import Workbook
+from openpyxl import load_workbook
+
+wb = load_workbook('e:\\sample.xlsx')
+ws1=wb.active
+
+ws.merge_cells('A2:D2')
+ws.unmerge_cells('A2:D2')  #合并后的单元格，脚本单独执行拆分操作会报错，需要重新执行合并操作再拆分
+
+# or equivalently
+ws.merge_cells(start_row=2,start_column=1,end_row=2,end_column=4)
+ws.unmerge_cells(start_row=2,start_column=1,end_row=2,end_column=4)
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+10、插入一个图片
+需要先安装Pilow,安全文件是：PIL-fork-1.1.7.win-amd64-py2.7.exe
+
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import load_workbook
+from openpyxl.drawing.image import Image
+
+wb = load_workbook('e:\\sample.xlsx')
+ws1=wb.active
+
+img = Image('e:\\1.png')
+ws1.add_image(img, 'A1')
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+11、 隐藏单元格
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import load_workbook
+from openpyxl.drawing.image import Image
+
+wb = load_workbook('e:\\sample.xlsx')
+ws1=wb.active
+
+ws1.column_dimensions.group('A', 'D', hidden=True)   #隐藏a到d列范围内的列
+#ws1.row_dimensions 无group方法
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+复制代码
+12、 画一个柱状图
+# -*- coding: utf-8 -*-
+from openpyxl import load_workbook
+from openpyxl import Workbook
+from openpyxl.chart import BarChart, Reference, Series
+
+wb = load_workbook('e:\\sample.xlsx')
+ws1=wb.active
+
+wb = Workbook()
+ws = wb.active
+for i in range(10):
+    ws.append([i])
+
+values = Reference(ws, min_col=1, min_row=1, max_col=1, max_row=10)
+chart = BarChart()
+chart.add_data(values)
+ws.add_chart(chart, "E15")
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+13、 画一个饼图
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import load_workbook
+from openpyxl import Workbook
+from openpyxl.chart import (PieChart , ProjectedPieChart, Reference)
+from openpyxl.chart.series import DataPoint
+
+data = [
+    ['Pie', 'Sold'],
+    ['Apple', 50],
+    ['Cherry', 30],
+    ['Pumpkin', 10],
+    ['Chocolate', 40],
+]
+
+wb = Workbook()
+ws = wb.active
+
+for row in data:
+    ws.append(row)
+
+pie = PieChart()
+labels = Reference(ws, min_col=1, min_row=2, max_row=5)
+data = Reference(ws, min_col=2, min_row=1, max_row=5)
+pie.add_data(data, titles_from_data=True)
+pie.set_categories(labels)
+pie.title = "Pies sold by category"
+
+# Cut the first slice out of the pie
+slice = DataPoint(idx=0, explosion=20)
+pie.series[0].data_points = [slice]
+
+ws.add_chart(pie, "D1")
+
+ws = wb.create_sheet(title="Projection")
+
+data = [
+    ['Page', 'Views'],
+    ['Search', 95],
+    ['Products', 4],
+    ['Offers', 0.5],
+    ['Sales', 0.5],
+]
+
+for row in data:
+    ws.append(row)
+
+projected_pie = ProjectedPieChart()
+projected_pie.type = "pie"
+projected_pie.splitType = "val" # split by value
+labels = Reference(ws, min_col=1, min_row=2, max_row=5)
+data = Reference(ws, min_col=2, min_row=1, max_row=5)
+projected_pie.add_data(data, titles_from_data=True)
+projected_pie.set_categories(labels)
+
+ws.add_chart(projected_pie, "A10")
+
+from copy import deepcopy
+projected_bar = deepcopy(projected_pie)
+projected_bar.type = "bar"
+projected_bar.splitType = 'pos' # split by position
+
+ws.add_chart(projected_bar, "A27")
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+14、 设定一个表格区域，并设定表格的格式
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import load_workbook
+from openpyxl import Workbook
+from openpyxl.worksheet.table import Table, TableStyleInfo
+
+wb = Workbook()
+ws = wb.active
+
+data = [
+    ['Apples', 10000, 5000, 8000, 6000],
+    ['Pears',   2000, 3000, 4000, 5000],
+    ['Bananas', 6000, 6000, 6500, 6000],
+    ['Oranges',  500,  300,  200,  700],
+]
+
+# add column headings. NB. these must be strings
+ws.append(["Fruit", "2011", "2012", "2013", "2014"])
+for row in data:
+    ws.append(row)
+
+tab = Table(displayName="Table1", ref="A1:E5")
+
+# Add a default style with striped rows and banded columns
+style = TableStyleInfo(name="TableStyleMedium9", showFirstColumn=True,
+                       showLastColumn=True, showRowStripes=True, showColumnStripes=True)
+#第一列是否和样式第一行颜色一行，第二列是否···
+#是否隔行换色，是否隔列换色
+tab.tableStyleInfo = style
+ws.add_table(tab)
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+15、给单元格设定字体颜色
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import Workbook
+from openpyxl.styles import colors
+from openpyxl.styles import Font
+
+wb = Workbook()
+ws = wb.active
+
+a1 = ws['A1']
+d4 = ws['D4']
+ft = Font(color=colors.RED)  # color="FFBB00"，颜色编码也可以设定颜色
+a1.font = ft
+d4.font = ft
+
+# If you want to change the color of a Font, you need to reassign it::
+#italic 倾斜字体
+a1.font = Font(color=colors.RED, italic=True) # the change only affects A1
+a1.value = "abc"
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+16、设定字体和大小
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import Workbook
+from openpyxl.styles import colors
+from openpyxl.styles import Font
+
+wb = Workbook()
+ws = wb.active
+
+a1 = ws['A1']
+d4 = ws['D4']
+a1.value = "abc"
+
+from openpyxl.styles import Font
+from copy import copy
+
+ft1 = Font(name=u'宋体', size=14)
+ft2 = copy(ft1)   #复制字体对象
+ft2.name = "Tahoma"
+
+print ft1.name
+print ft2.name
+print ft2.size # copied from the
+
+a1.font = ft1
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+17、设定行和列的字体
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import Workbook
+from openpyxl.styles import Font
+wb = Workbook()
+ws = wb.active
+
+col = ws.column_dimensions['A']
+col.font = Font(bold=True)   #将A列设定为粗体
+row = ws.row_dimensions[1]
+row.font = Font(underline="single")  #将第一行设定为下划线格式
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+18、设定单元格的边框、字体、颜色、大小和边框背景色
+
+
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import Workbook
+from openpyxl.styles import Font
+from openpyxl.styles import NamedStyle, Font, Border, Side,PatternFill
+
+wb = Workbook()
+ws = wb.active
+
+highlight = NamedStyle(name="highlight")
+highlight.font = Font(bold=True, size=20,color= "ff0100")
+highlight.fill = PatternFill("solid", fgColor="DDDDDD")#背景填充
+bd = Side(style='thick', color="000000")
+highlight.border = Border(left=bd, top=bd, right=bd, bottom=bd)
+
+print dir(ws["A1"])
+ws["A1"].style =highlight
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+复制代码
+
+
+19、常用的样式和属性设置
+复制代码
+# -*- coding: utf-8 -*-
+from openpyxl import Workbook
+from openpyxl.styles import Font
+from openpyxl.styles import NamedStyle, Font, Border, Side,PatternFill
+from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font
+
+wb = Workbook()
+ws = wb.active
+
+ft = Font(name=u'微软雅黑',
+    size=11,
+    bold=False,
+    italic=False,
+    vertAlign=None,
+    underline='none',
+    strike=False,
+    color='FF000000')
+
+fill = PatternFill(fill_type="solid",
+    start_color='FFEEFFFF',
+    end_color='FF001100')
+
+#边框可以选择的值为：'hair', 'medium', 'dashDot', 'dotted', 'mediumDashDot', 'dashed', 'mediumDashed', 'mediumDashDotDot', 'dashDotDot', 'slantDashDot', 'double', 'thick', 'thin']
+#diagonal 表示对角线
+bd = Border(left=Side(border_style="thin",
+              color='FF001000'),
+    right=Side(border_style="thin",
+               color='FF110000'),
+    top=Side(border_style="thin",
+             color='FF110000'),
+    bottom=Side(border_style="thin",
+                color='FF110000'),
+    diagonal=Side(border_style=None,
+                  color='FF000000'),
+    diagonal_direction=0,
+    outline=Side(border_style=None,
+                 color='FF000000'),
+    vertical=Side(border_style=None,
+                  color='FF000000'),
+    horizontal=Side(border_style=None,
+                   color='FF110000')
+                )
+
+alignment=Alignment(horizontal='general',
+        vertical='bottom',
+        text_rotation=0,
+        wrap_text=False,
+        shrink_to_fit=False,
+        indent=0)
+
+number_format = 'General'
+
+protection = Protection(locked=True,
+            hidden=False)
+
+ws["B5"].font = ft
+ws["B5"].fill =fill
+ws["B5"].border = bd
+ws["B5"].alignment = alignment
+ws["B5"].number_format = number_format
+
+ws["B5"].value ="zeke"
+
+# Save the file
+wb.save("e:\\sample.xlsx")
+
+# ....................................
+
+# -----------------------------------------
+
+# =========================================
+
+
+
+# =========================================
+获取当前格式化时间
+
+import time
+
+# 格式化成2016-03-20 11:45:39形式
+print (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+# =========================================
+
+
+
+# ==========================================
+jinja2
+
+取取索引的值直接在后面加上说引的数字
+    {{ i.0 }}
+# ==========================================
+
+
+# ==========================================
+html 的表格
+
+<table border="1">
+  <tr>
+    <th>Month</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+</table>
+# ==========================================
+
+
+
+
+
+# ==========================================
+vue
+
+添加内联样式
+
+    template:`<my-app v-bind:style="{background:'pink'}"></my-app>`,
+清除浮动
+
+    v-bind:style="{overflow:'hidden'}"
+# ==========================================
+
+
+
+
+# ==========================================
+html
+
+浮动
+    float:left
+
+
+# ==========================================
+
+
+
+
+
+# =========================================
+vuecli
+
+遇见错误
+    Error: ENOSPC
+        这个错误的意思时系统对文件监控的数量已经到达限制数量了！！
+        解决方法
+            修改系统监控文件数量
+                Ubuntu
+
+                    1 sudo gedit /etc/sysctl.conf
+                    
+                添加一行在最下面
+
+                   2 fs.inotify.max_user_watches=524288
+                    
+                然后保存退出！
+
+                执行
+                   3 sudo sysctl -p
+# =========================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

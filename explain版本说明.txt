@@ -1,0 +1,9 @@
+test3_fp_django1.0用网页少，数据库mysql 运行速度快
+
+test3_fp_django2.0用网页多，数据库mysql 运行速度中
+
+test3_fp_django2.5基于1.0开发用网页少，数据库redis，运行速度快快，确定数据太多易崩
+
+test3_fp_django2.6 基于1.0和2.0开发 整合了精简代码 错误理解django缓存，速度未能提高
+
+test3_fp_django2.7 基于2.0多线程或多进程计算数据

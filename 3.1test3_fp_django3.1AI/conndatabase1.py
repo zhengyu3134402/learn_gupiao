@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-DB_NAME1 = 'mysql+mysqlconnector://zhengyu:3134402@localhost:3306/test4'
+DB_NAME1 = 'mysql+mysqlconnector://root:a3134402@localhost:3306/testai2'
 BASE1 = declarative_base()
 
 class ConnectMysql:

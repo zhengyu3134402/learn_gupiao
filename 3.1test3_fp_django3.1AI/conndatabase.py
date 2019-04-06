@@ -4,7 +4,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-DB_NAME = 'mysql+mysqlconnector://zhengyu:3134402@localhost:3306/test2'
+
+DB_NAME = 'mysql+mysqlconnector://root:a3134402@localhost:3306/testai1'
 BASE = declarative_base()
 
 
@@ -34,7 +35,7 @@ class A(BASE):
 
 
 
-db_name = 'mysql+mysqlconnector://zhengyu:3134402@localhost:3306/test2'
+db_name = 'mysql+mysqlconnector://root:a3134402@localhost:3306/testai1'
 Base = declarative_base()
 engine = create_engine(db_name)
 Base.metadata.create_all(engine)

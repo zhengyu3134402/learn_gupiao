@@ -2,7 +2,7 @@
 
 import pymysql
 from pymysql.err import InternalError
-conn = pymysql.connect(host='127.0.0.1', port=3306, user='zhengyu', passwd='3134402', db='test3')
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='a3134402', db='testai1')
 
 cursor = conn.cursor()
 

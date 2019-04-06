@@ -10,7 +10,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-DB_NAME = 'mysql+mysqlconnector://zhengyu:3134402@localhost:3306/test3'
+DB_NAME = 'mysql+mysqlconnector://root:a3134402@localhost:3306/testai1'
 BASE = declarative_base()
 # 11
 class A(BASE):

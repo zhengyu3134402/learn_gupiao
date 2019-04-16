@@ -1,42 +1,45 @@
-import os
+import time
 import openpyxl
+from lib.second_conn_sqlite3 import *
+
+
+def from_database2_take_data(clear_name):
 
 
 
-# def from_test4_take_data(flag):
-#     from conndatabase2 import ConnectMysql, C
-#     # print(flag)
-#     conn = ConnectMysql()
-#     session = conn.session
-#     print(flag)
-#     all_data = list(session.query(C).filter_by(args_name=flag))
-#     # print(all_data)
-#     session.close()
-#     return all_data
+    session = second_conn_sqlite3.make_session()
+
+    all_data = list(session.query(Second).filter_by(name=clear_name))
+    write_to_excel(all_data, clear_name)
+    session.close()
 
 
-# def computed_avg(flag_value_list):
-#
-#     return sum(flag_value_list)/len(flag_value_list)
-#
-#
-# def write_to_excel(li):
-#
-#     filepath = os.getcwd() + '\\test.xlsx'
-#     wb = openpyxl.load_workbook(filepath)
-#     ws = wb.active
-#
-#     ws.append(li)
-#     wb.save(filepath)
-#
-# def make_excel():
-#
-#     filepath = os.getcwd() + '\\test.xlsx'
-#     wb = openpyxl.Workbook()
-#     wb.save(filepath)
 
 
-def compute_finall_result_fff():
+def write_to_excel(all_data, clear_name):
+
+    avg_list = []
+
+    filepath = os.getcwd() + '\\avg.xlsx'
+    wb = openpyxl.load_workbook(filepath)
+    ws = wb.active
+    for obj in all_data:
+
+        avg_list.append(obj.sp2_sp1)
+
+    ws.append([clear_name, sum(avg_list)/len(avg_list), len(avg_list)])
+    wb.save(filepath)
+
+def make_excel():
+
+    filepath = os.getcwd() + '\\avg.xlsx'
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.append(['技术指标', '平均数', '个数'])
+    wb.save(filepath)
+
+
+# def compute_finall_result_fff():
 
 
 
@@ -69,4 +72,24 @@ def compute_finall_result_fff():
     #         write_to_excel([flag, avg])
     #         flag_value_list.clear()
 
-compute_finall_result_fff()
+# compute_finall_result_fff()
+
+def computed_avg():
+    with open('jishuzhibiao.txt', 'r') as f:
+
+        s = f.readlines()
+        for name in s:
+            clear_name = name.strip()
+            from_database2_take_data(clear_name)
+
+t1 = time.time()
+make_excel()
+computed_avg()
+t2 = time.time()
+
+
+result_time = t2-t1
+
+print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
+print('总共花了%r秒, 请查看avg.xlsx表格！！'%(result_time))
+print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')

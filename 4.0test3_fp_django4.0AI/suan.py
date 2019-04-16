@@ -220,18 +220,24 @@ def compute_after_20_result(four_days):
 
     put_computed_data_to_seconddb(make_s)
 
-# def make_solt(make_s):
-# @@@@@@@@@@@@@@@@@@ 不四舍五入取小数点后面2位  不四舍五入小数点后两位+0.01  取名
-#     num1 = round(float(make_s.name))
-#     # print(num1, "本值")
-#     # num1_rage = str(round(num1, 2)) +','+ str(round(num1+0.01, 2))
-#     make_s.name=num1_rage
-#     return make_s
+
+jishuzhibiao_name_list = set()  # 为了以后实现多线程，如果不用多线程直接写入文本也可
+
+
+def make_solt(make_s):
+
+#     print(make_s.name, '本值')
+    num1 = make_s.name[0:4]
+    num1_range = num1 + ',' + str(float(num1)+0.01)  # 不四舍五入取小数点后面2位  不四舍五入小数点后两位+0.01  取名
+    # print(num1_range)
+    jishuzhibiao_name_list.add(num1_range)
+    make_s.name = num1_range
+    return make_s
 
 def put_computed_data_to_seconddb(make_s):
-    # new_make_s = make_solt(make_s)
+    new_make_s = make_solt(make_s)
     session2 = second_conn_sqlite3.make_session()
-    session2.add(make_s)
+    session2.add(new_make_s)
     session2.commit()
     session2.close()
 
@@ -289,6 +295,9 @@ if __name__ == '__main__':
             compute_final_result(data)
 
     # compute_finall_result_fff()
+    with open('jishuzhibiao.txt', 'w') as f:
+        for i in jishuzhibiao_name_list:
+            f.write(i+'\n')
     t2 = time.time()
     print('共用了%r秒'%(t2-t1))
     print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')

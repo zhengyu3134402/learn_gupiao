@@ -26,10 +26,12 @@
       <change beforePath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/suan.py" beforeDir="false" afterPath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/suan.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/test.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/test.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/test222.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/test222.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avg.py" beforeDir="false" afterPath="$PROJECT_DIR$/avg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avg.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/avg.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/second.db" beforeDir="false" afterPath="$PROJECT_DIR$/db/second.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jishuzhibiao.txt" beforeDir="false" afterPath="$PROJECT_DIR$/jishuzhibiao.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/suan.py" beforeDir="false" afterPath="$PROJECT_DIR$/suan.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test222.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/test222.xlsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,14 +88,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/suan.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2200">
-              <caret line="299" column="27" lean-forward="true" selection-start-line="299" selection-start-column="27" selection-end-line="299" selection-end-column="27" />
+            <state relative-caret-position="-1300">
+              <caret line="248" column="39" lean-forward="true" selection-start-line="248" selection-start-column="39" selection-end-line="248" selection-end-column="39" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <element signature="e#465#494#0" />
                 <element signature="e#1753#1789#0" />
                 <element signature="e#7060#7106#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -125,14 +136,15 @@
         <option value="$PROJECT_DIR$/03_创建第二次结果数据库表.py" />
         <option value="$PROJECT_DIR$/del_dadabase2.py" />
         <option value="$PROJECT_DIR$/print_result.py" />
-        <option value="$PROJECT_DIR$/suan.py" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/avg.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/suan.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="width" value="720" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="86" />
+    <option name="width" value="1354" />
     <option name="height" value="860" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -210,17 +222,17 @@
       <workItem from="1555229179659" duration="2469000" />
       <workItem from="1555243132485" duration="4877000" />
       <workItem from="1555299139659" duration="20602000" />
-      <workItem from="1555386144234" duration="6132000" />
+      <workItem from="1555386144234" duration="13165000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34080000" />
+    <option name="totallyTimeSpent" value="41113000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="7" />
+    <frame x="720" y="0" width="720" height="860" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.16404012" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3590909" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -234,14 +246,14 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32166892" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3287483" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32974428" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.14255014" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.30151516" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,13 +367,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../learn_notes/01-笔记总汇总.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="79" column="24" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jishuzhibiao.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
@@ -380,9 +385,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../learn_notes/01-笔记总汇总.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="79" column="24" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/second_conn_sqlite3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-950">
+        <state relative-caret-position="-725">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
@@ -390,17 +409,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/suan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2200">
-          <caret line="299" column="27" lean-forward="true" selection-start-line="299" selection-start-column="27" selection-end-line="299" selection-end-column="27" />
+        <state relative-caret-position="-1300">
+          <caret line="248" column="39" lean-forward="true" selection-start-line="248" selection-start-column="39" selection-end-line="248" selection-end-column="39" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
             <element signature="e#465#494#0" />

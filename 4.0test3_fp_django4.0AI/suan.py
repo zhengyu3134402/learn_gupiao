@@ -215,7 +215,7 @@ def compute_after_20_result(four_days):
 
 
     datas = four_days[-5].sp/four_days[-6].sp  # 次日除以今日
-
+    # print(four_days[-6].code, four_days[-6].date)
     # =========================================================
     make_s = Second(name='%s,%s,%st'%(str(a), str(b), str(c)), sp2_sp1=datas, code=four_days[-6].code, date=four_days[-6].date)
     # =========================================================
@@ -241,11 +241,11 @@ def make_solt(make_s):
             if 't' in num1:
 
                 new_num1 = num1[0:-1]
-                print(new_num1)
+                # print(new_num1)
                 num += (new_num1[0:5] + ',' + (str(float(new_num1)+0.001) if len(str(float(new_num1)+0.001))<7 else str(float(new_num1)+0.001)[0:5]) +'|')
             else:
                 num += (num1[0:4] + ',' + (str(float(num1)+0.01) if len(str(float(num1)+0.01))<5 else str(float(num1)+0.01)[0:4]) +'|')
-            print(num)
+            # print(num)
         jishuzhibiao_name_list.add(num)
         make_s.name = num
         return make_s
@@ -297,58 +297,66 @@ def conn_mysql(code):
 
 
 
+def main(all_data):
+
+    a = compute_final_result(all_data)
+    print(a)
+    return a
 
 
 
 
 
-
-
-
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@sqlite3 不支持多进程写入有问题如果没有解决， 换回mysql
 
 
 
 
 if __name__ == '__main__':
 
-    t1 = time.time()
-    with open(os.getcwd()+'\\code.txt', 'r')as f:
-        for code in f:
-            print(code)
-            data = conn_mysql(code)
-            # print(len(data))
-            compute_final_result(data)
 
-    # compute_finall_result_fff()
-    with open('jishuzhibiao.txt', 'w') as f:
-        for i in jishuzhibiao_name_list:
-            f.write(i+'\n')
-    t2 = time.time()
-    print('共用了%r秒'%(t2-t1))
-    print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
-    print('--------数据计算完毕，请查看test.xlsx表格----------')
-    print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
-
-    # import time
-    # from multiprocessing import Pool
-    #
-    # del_test4_gupiao_avg()
+    # #单线程===============================================
     # t1 = time.time()
-    # p = Pool(5)
-    # flag = 0
     # with open(os.getcwd()+'\\code.txt', 'r')as f:
     #     for code in f:
+    #         print(code)
+    #         data = conn_mysql(code)
+    #         # print(len(data))
+    #         compute_final_result(data)
+    #
+    # # compute_finall_result_fff()
+    # with open('jishuzhibiao.txt', 'w') as f:
+    #     for i in jishuzhibiao_name_list:
+    #         f.write(i+'\n')
+    # t2 = time.time()
+    # print('共用了%r秒'%(t2-t1))
+    # print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+    # print('--------数据计算完毕，请查看test.xlsx表格----------')
+    # print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+    # #单线程===============================================
+
+    # 多进程================================================
+    # import time
+    from multiprocessing import Pool
+    #
+    # del_test4_gupiao_avg()
+    t1 = time.time()
+    p = Pool(5)
+    # flag = 0
+    with open(os.getcwd()+'\\code.txt', 'r')as f:
+
+        for code in f:
+            print(code)
+
+            result = p.apply_async(conn_mysql, args=(code,), callback=main)
+
+        p.close()
+        p.join()
+    #
+    t2 = time.time()
     #
     #
-    #         result = p.apply_async(conn_mysql, args=(code,), callback=compute_final_result)
-    #
-    #     p.close()
-    #     p.join()
-    #
-    #     t2 = time.time()
-    #
-    #
-    #     print('计算数据使用了=>', t2-t1, '秒')
+    print('计算数据使用了=>', t2-t1, '秒')
     #
     #
     #     compute_finall_result_fff()
@@ -357,7 +365,7 @@ if __name__ == '__main__':
     #     print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
     #     print('--------数据计算完毕，请查看test.xlsx表格----------')
     #     print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
-
+    # 多进程================================================
 
 
 

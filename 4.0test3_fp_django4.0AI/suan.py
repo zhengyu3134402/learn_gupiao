@@ -241,13 +241,17 @@ def make_solt(make_s):
             if 't' in num1:
 
                 new_num1 = num1[0:-1]
-                # print(new_num1)
-                num += (new_num1[0:5] + ',' + (str(float(new_num1)+0.001) if len(str(float(new_num1)+0.001))<7 else str(float(new_num1)+0.001)[0:5]) +'|')
+                print(len(new_num1))
+                # print(new_num1) # new_num1[0:5]
+                num += ((new_num1[0:5] if len(new_num1) >3 else new_num1+'00') + ',' + (str(float(new_num1)+0.001)[0:5] if len(str(float(new_num1)+0.001))<7 else str(float(new_num1)+0.001)[0:5]) +'|')
+                print(num)
             else:
-                num += (num1[0:4] + ',' + (str(float(num1)+0.01) if len(str(float(num1)+0.01))<5 else str(float(num1)+0.01)[0:4]) +'|')
-            # print(num)
+                num += ((num1[0:4] if len(num1)>3 else num1 +'0') + ',' + (str(float(num1)+0.01)[0:4] if len(str(float(num1)+0.01))<5 else str(float(num1)+0.01)[0:4]) +'|')
+        # print(num)
         jishuzhibiao_name_list.add(num)
         make_s.name = num
+        # print(jishuzhibiao_name_list)
+
         return make_s
 
     else:
@@ -299,9 +303,8 @@ def conn_mysql(code):
 
 def main(all_data):
 
-    a = compute_final_result(all_data)
-    print(a)
-    return a
+    compute_final_result(all_data)
+
 
 
 
@@ -352,16 +355,19 @@ if __name__ == '__main__':
 
         p.close()
         p.join()
-    #
+
+    with open('jishuzhibiao.txt', 'w') as f:
+        for i in jishuzhibiao_name_list:
+            f.write(i+'\n')
+
     t2 = time.time()
     #
     #
-    print('计算数据使用了=>', t2-t1, '秒')
-    #
-    #
-    #     compute_finall_result_fff()
-    #
-    #
+    print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+    print('计算数据使用了=>', t2-t1, '秒','=>请执行 python avg.py 求平均值')
+    print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+
+
     #     print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
     #     print('--------数据计算完毕，请查看test.xlsx表格----------')
     #     print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')

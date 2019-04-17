@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, String, Integer, Float, UniqueConstraint
 import os
 
-PATH = os.path.abspath(os.path.dirname(__file__))+'\\..\\db\\test.db'
+# PATH = os.path.abspath(os.path.dirname(__file__))+'\\..\\db\\test.db'
 
 
 class ConnectSqlite3:
@@ -19,7 +19,7 @@ class ConnectSqlite3:
 
     def __init__(self):
 
-        self.engine = create_engine('sqlite:///%s'%(PATH))  # 连接
+        self.engine = create_engine('mysql+mysqlconnector://root:a3134402@localhost:3306/first')
         self.Base = declarative_base()
 
     def make_session(self):

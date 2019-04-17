@@ -4,7 +4,10 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, String, Integer, Float, UniqueConstraint
 import os
 
-SPATH = os.path.abspath(os.path.dirname(__file__))+'\\..\\db\\second.db'
+
+
+
+# SPATH = os.path.abspath(os.path.dirname(__file__))+'\\..\\db\\second.db'
 
 
 class SecondConnectSqlite3:
@@ -19,7 +22,7 @@ class SecondConnectSqlite3:
 
     def __init__(self):
 
-        self.engine = create_engine('sqlite:///%s'%(SPATH))  # 连接
+        self.engine = create_engine('mysql+mysqlconnector://root:a3134402@localhost:3306/second')  # 连接
         self.Base = declarative_base()
 
     def make_session(self):

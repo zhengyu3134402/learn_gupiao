@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import openpyxl
 write_to_file_result_list = []
-DB_NAME = 'mysql+mysqlconnector://zhengyu:3134402@localhost:3306/test2'
+DB_NAME = 'mysql+mysqlconnector://root:a3134402@localhost:3306/test2'
 BASE = declarative_base()
 
 class A(BASE):
@@ -129,8 +129,17 @@ def compute_after_20_result(four_days):
     # 【-3】第三日
     # 【-2】第四日
     # 【-1】第五日
+    # print(four_days[-6].sp / four_days[-7].sp)
+    # print(four_days[-7].sp / four_days[-8].sp)
+    # print(four_days[-8].sp / four_days[-9].sp, four_days[-6].date)
+    print(four_days[-6].code, four_days[-6].date)
+    if 0.97<four_days[-6].sp / four_days[-7].sp<0.98 and \
+        0.97<four_days[-7].sp / four_days[-8].sp<0.98 and \
+         0.973 < four_days[-8].sp / four_days[-9].sp<0.974:
 
-    if four_days[-6].sp/four_days[-7].sp>1.5:
+        #1.00,1.01|0.99,1.00|0.999,1.000|	0.993573333	3
+
+
 
         return four_days[-7], four_days[-6], four_days[-5], four_days[-4], four_days[-3], four_days[-2], four_days[
             -1]  # 别碰这一行
@@ -249,7 +258,7 @@ if __name__ == '__main__':
     flag = 0
     with open(os.getcwd()+'\\code.txt', 'r')as f:
         for code in f:
-
+            # print(code)
 
             result = p.apply_async(conn_mysql, args=(code,), callback=main)
 

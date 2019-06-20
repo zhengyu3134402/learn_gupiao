@@ -2,24 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c56a4b91-1690-4cda-8d9b-04aad1745b31" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/.idea/3.0test3_fp_django3.0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../3.0test3_fp_django3.0/.idea/3.0test3_fp_django3.0.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../3.0test3_fp_django3.0/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../3.0test3_fp_django3.0/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/cha.py" beforeDir="false" afterPath="$PROJECT_DIR$/../3.0test3_fp_django3.0/cha.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/code.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../3.0test3_fp_django3.0/code.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/conndatabase.py" beforeDir="false" afterPath="$PROJECT_DIR$/../3.0test3_fp_django3.0/conndatabase.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/del_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/../3.0test3_fp_django3.0/del_database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/export/SH#600000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../3.0test3_fp_django3.0/export/SH#600000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/export/SH#600004.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../3.0test3_fp_django3.0/export/SH#600004.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/export/SH#600006.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../3.0test3_fp_django3.0/export/SH#600006.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/export/SH#600007.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/export/SH#600008.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/export/SH#600009.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/export/SH#600010.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/export/SH#600011.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/export/SH#600012.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/export/SH#600015.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.0test3_fp_django3.0/suan.py" beforeDir="false" afterPath="$PROJECT_DIR$/../3.0test3_fp_django3.0/suan.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/code.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/code.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/export/SH#600051.txt" beforeDir="false" />
@@ -27,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/test.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/test.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/test222.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/test222.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/../3.1test3_fp_django3.1AI/venv/pip-selfcheck.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../4.0test3_fp_django4.0AI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../4.0test3_fp_django4.0AI/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,8 +88,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/avg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="85" selection-start-line="85" selection-end-line="85" />
+            <state relative-caret-position="1259">
+              <caret line="81" column="63" selection-start-line="81" selection-start-column="63" selection-end-line="81" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -169,35 +150,12 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="4.1test3_fp_django4.1AI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="4.1test3_fp_django4.1AI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="4.1test3_fp_django4.1AI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="4.1test3_fp_django4.1AI" type="462c0819:PsiDirectoryNode" />
-              <item name="export" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="4.1test3_fp_django4.1AI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="4.1test3_fp_django4.1AI" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../4.2test3_fp_django4.2AI" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -239,14 +197,16 @@
       <workItem from="1555555010852" duration="12101000" />
       <workItem from="1555652403962" duration="9754000" />
       <workItem from="1555670190917" duration="49000" />
+      <workItem from="1556200546405" duration="82000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77366000" />
+    <option name="totallyTimeSpent" value="77448000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.13681948" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -450,8 +410,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/avg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        <state relative-caret-position="1259">
+          <caret line="81" column="63" selection-start-line="81" selection-start-column="63" selection-end-line="81" selection-end-column="63" />
         </state>
       </provider>
     </entry>

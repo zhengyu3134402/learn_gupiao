@@ -83,9 +83,11 @@ def compute_after_20_result(four_days):
     # 【-1】第五日
 
     # ============================================
-    a = four_days[-6].today_blx / four_days[-7].today_blx -four_days[-7].today_blx / four_days[-8].today_blx
-
-    if four_days[-6].today_blx / four_days[-7].today_blx > 1:
+    a = four_days[-8].sp / four_days[-9].sp
+    b = four_days[-6].sp / four_days[-7].sp
+    # print(a)
+    # print(b)
+    if four_days[-5].sp / four_days[-6].sp > 1:
     # ============================================
     # 0.91~1.10 : %s
     # 0.990~1.110 %st
@@ -98,7 +100,7 @@ def compute_after_20_result(four_days):
         zg4_sp1, zd4_sp1, sp4_sp1, kp5_sp1, zg5_sp1, zd5_sp1, sp5_sp1, kp6_sp1, zg6_sp1, zd6_sp1, \
         sp6_sp1 = make_all_avg([four_days[-7], four_days[-6], four_days[-5], four_days[-4], four_days[-3], four_days[-2], four_days[-1]])
         # &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-        make_s = Second(name='%s' % (str(a)), name1=four_days[-6].name, code=four_days[-6].code, date=four_days[-6].date,
+        make_s = Second(name='%sw,%sw' % (str(a), str(b)), name1=four_days[-6].name, code=four_days[-6].code, date=four_days[-6].date,
                         sp2_sp0=sp2_sp0, kp2_sp1=kp2_sp1, zg2_sp1=zg2_sp1, zd2_sp1=zd2_sp1,
                         sp2_sp1=sp2_sp1, kp3_sp1=kp3_sp1, zg3_sp1=zg3_sp1, zd3_sp1=zd3_sp1,
                         sp3_sp1=sp3_sp1, kp4_sp1=kp4_sp1, zg4_sp1=zg4_sp1, zd4_sp1=zd4_sp1,
@@ -178,7 +180,7 @@ def make_solt(make_s):
 
 
         for num1 in name_list:
-
+            # print(num1)
             if 't' in num1:
 
                 new_num1 = num1[0:-1]
@@ -186,6 +188,17 @@ def make_solt(make_s):
                 # print(new_num1) # new_num1[0:5]
                 num += ((str(new_num1[0:5])+'0000')[0:5])  + ',' + ((str(float(new_num1)+0.001)+'0000')[0:5]) +'|'
                 # print(num)
+            # ====================================
+            elif 'w' in num1:
+                new_num1 = num1[0:-1]
+                # print(new_num1)
+                num += (new_num1 + '00000')[0:6] + ',' + (str(float(new_num1) + 0.0001) + '00000')[0:6]+'|'
+                # print(num)
+            elif 'q' in num1:
+                new_num1 = num1[0:-1]
+                num += (new_num1 + '0000')[0:5] + ',' + (str(float(new_num1) + 0.001) + '0000')[0:5]+ '|'  # 不四舍五入取小数点后面2位  不四舍五入小数点后两位+0.01  取名
+
+            # ================================================
             else:
                 num += ((str(num1[0:4])+'0000')[0:4]) + ',' + ((str(float(num1)+0.01)+'0000')[0:4]) + '|'
         # print(num)
